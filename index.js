@@ -1,13 +1,13 @@
 const node = (newValue = null, next = null) => {
   let value = newValue;
   let nextNode = next;
-  const getValue = () => value;
+  const toString = () => value;
   const getNextNode = () => nextNode;
   const setNextNode = (n) => {
     nextNode = n;
   };
 
-  return { getValue, getNextNode, setNextNode };
+  return { toString, getNextNode, setNextNode };
 };
 
 const linkedList = () => {
@@ -51,7 +51,7 @@ const linkedList = () => {
     return result;
   };
 
-  const getHead = () => (head ? head.getValue() : null);
+  const getHead = () => head;
 
   const tail = () => {
     let currentNode = head;
@@ -60,7 +60,7 @@ const linkedList = () => {
       currentNode = currentNode.getNextNode();
     }
 
-    return currentNode ? currentNode.getValue() : null;
+    return currentNode;
   };
 
   const at = (index) => {
@@ -73,8 +73,14 @@ const linkedList = () => {
         currentNode = currentNode.getNextNode();
       }
 
-      return currentNode.getValue();
+      return currentNode;
     }
+  };
+
+  const pop = () => {
+    const secondToLastNode = at(size() - 2);
+
+    secondToLastNode.setNextNode(null);
   };
 
   const toString = () => {
@@ -82,7 +88,7 @@ const linkedList = () => {
     let result = '';
 
     while (currentNode) {
-      result += `( ${currentNode.getValue()} ) -> `;
+      result += `( ${currentNode} ) -> `;
       currentNode = currentNode.getNextNode();
     }
 
@@ -91,7 +97,7 @@ const linkedList = () => {
     return result;
   };
 
-  return { append, prepend, size, getHead, tail, at, toString };
+  return { append, prepend, size, getHead, tail, at, pop, toString };
 };
 
 let myList = linkedList();
@@ -104,6 +110,9 @@ for (let i = 3; i < 10; i += 1) {
 
 console.log(myList.toString());
 console.log('Size:', myList.size());
-console.log('Head:', myList.getHead());
-console.log('Tail:', myList.tail());
-console.log('Index 5:', myList.at(5));
+console.log(`Head: ${myList.getHead()}`);
+console.log(`Tail: ${myList.tail()}`);
+console.log(`Index 5: ${myList.at(6)}`);
+console.log('Popping...');
+myList.pop();
+console.log(myList.toString());
