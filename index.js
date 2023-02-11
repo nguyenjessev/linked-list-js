@@ -1,13 +1,14 @@
 const node = (newValue = null, next = null) => {
   let value = newValue;
   let nextNode = next;
-  const toString = () => value;
+  const getValue = () => value;
   const getNextNode = () => nextNode;
   const setNextNode = (n) => {
     nextNode = n;
   };
+  const toString = () => value;
 
-  return { toString, getNextNode, setNextNode };
+  return { getValue, getNextNode, setNextNode, toString };
 };
 
 const linkedList = () => {
@@ -83,6 +84,20 @@ const linkedList = () => {
     secondToLastNode.setNextNode(null);
   };
 
+  const contains = (value) => {
+    let currentNode = head;
+
+    while (currentNode) {
+      if (currentNode.getValue() === value) {
+        return true;
+      } else {
+        currentNode = currentNode.getNextNode();
+      }
+    }
+
+    return false;
+  };
+
   const toString = () => {
     let currentNode = head;
     let result = '';
@@ -97,7 +112,7 @@ const linkedList = () => {
     return result;
   };
 
-  return { append, prepend, size, getHead, tail, at, pop, toString };
+  return { append, prepend, size, getHead, tail, at, pop, contains, toString };
 };
 
 let myList = linkedList();
@@ -116,3 +131,5 @@ console.log(`Index 5: ${myList.at(6)}`);
 console.log('Popping...');
 myList.pop();
 console.log(myList.toString());
+console.log('Contains 4?', myList.contains(4));
+console.log('Contains 99?', myList.contains(99));
