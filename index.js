@@ -114,6 +114,20 @@ const linkedList = () => {
     return index < size() ? index : null;
   };
 
+  const insertAt = (value, index) => {
+    const newNode = node(value);
+
+    if (index < size()) {
+      const previousNode = at(index - 1);
+      const nextNode = at(index);
+
+      previousNode.setNextNode(newNode);
+      newNode.setNextNode(nextNode);
+    } else {
+      tail().setNextNode(newNode);
+    }
+  };
+
   const toString = () => {
     let currentNode = head;
     let result = '';
@@ -138,6 +152,7 @@ const linkedList = () => {
     pop,
     contains,
     find,
+    insertAt,
     toString,
   };
 };
@@ -162,3 +177,9 @@ console.log('Contains 4?', myList.contains(4));
 console.log('Contains 99?', myList.contains(99));
 console.log('Index of 5:', myList.find(5));
 console.log('Index of 99:', myList.find(99));
+console.log('Inserting 99 at index 4...');
+myList.insertAt(99, 4);
+console.log(myList.toString());
+console.log('Inserting 999 at index 20...');
+myList.insertAt(999, 20);
+console.log(myList.toString());
