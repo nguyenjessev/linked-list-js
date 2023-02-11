@@ -128,6 +128,19 @@ const linkedList = () => {
     }
   };
 
+  const removeAt = (index) => {
+    if (index < 1) {
+      head = at(1);
+    } else if (index < size()) {
+      const previousNode = at(index - 1);
+      const nextNode = at(index + 1);
+
+      previousNode.setNextNode(nextNode);
+    } else {
+      console.log('Invalid index.');
+    }
+  };
+
   const toString = () => {
     let currentNode = head;
     let result = '';
@@ -153,6 +166,7 @@ const linkedList = () => {
     contains,
     find,
     insertAt,
+    removeAt,
     toString,
   };
 };
@@ -182,4 +196,10 @@ myList.insertAt(99, 4);
 console.log(myList.toString());
 console.log('Inserting 999 at index 20...');
 myList.insertAt(999, 20);
+console.log(myList.toString());
+console.log('Removing node at index 6...');
+myList.removeAt(6);
+console.log(myList.toString());
+console.log('Removing node at index 99...');
+myList.removeAt(99);
 console.log(myList.toString());
