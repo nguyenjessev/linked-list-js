@@ -29,6 +29,16 @@ const linkedList = () => {
     }
   };
 
+  const prepend = (value) => {
+    const newNode = node(value);
+
+    if (head) {
+      newNode.setNextNode(head);
+    }
+
+    head = newNode;
+  };
+
   const toString = () => {
     let currentNode = head;
     let result = '';
@@ -43,10 +53,11 @@ const linkedList = () => {
     return result;
   };
 
-  return { append, toString };
+  return { append, prepend, toString };
 };
 
 let myList = linkedList();
-myList.append(5);
+myList.append(2);
+myList.prepend(1);
 
 console.log(myList.toString());
