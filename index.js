@@ -23,11 +23,30 @@ const linkedList = () => {
         currentNode = currentNode.getNextNode();
       }
 
-      currentNode.setNextNode = newNode;
+      currentNode.setNextNode(newNode);
     } else {
       head = newNode;
     }
   };
 
-  return { append };
+  const toString = () => {
+    let currentNode = head;
+    let result = '';
+
+    while (currentNode) {
+      result += `( ${currentNode.getValue()} ) -> `;
+      currentNode = currentNode.getNextNode();
+    }
+
+    result += 'null';
+
+    return result;
+  };
+
+  return { append, toString };
 };
+
+let myList = linkedList();
+myList.append(5);
+
+console.log(myList.toString());
