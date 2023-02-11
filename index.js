@@ -51,6 +51,8 @@ const linkedList = () => {
     return result;
   };
 
+  const getHead = () => (head ? head.getValue() : null);
+
   const toString = () => {
     let currentNode = head;
     let result = '';
@@ -65,7 +67,7 @@ const linkedList = () => {
     return result;
   };
 
-  return { append, prepend, size, toString };
+  return { append, prepend, size, getHead, toString };
 };
 
 let myList = linkedList();
@@ -74,3 +76,4 @@ myList.prepend(1);
 
 console.log(myList.toString());
 console.log('Size:', myList.size());
+console.log('Head:', myList.getHead());
