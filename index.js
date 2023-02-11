@@ -1,5 +1,5 @@
-const Node = () => {
-  let value = null;
+const Node = (newValue = null) => {
+  let value = newValue;
   const getValue = () => value;
 
   return { getValue };
