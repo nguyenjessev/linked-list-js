@@ -63,6 +63,20 @@ const linkedList = () => {
     return currentNode ? currentNode.getValue() : null;
   };
 
+  const at = (index) => {
+    if (index > size()) {
+      return null;
+    } else {
+      let currentNode = head;
+
+      for (let i = 0; i < index; i += 1) {
+        currentNode = currentNode.getNextNode();
+      }
+
+      return currentNode.getValue();
+    }
+  };
+
   const toString = () => {
     let currentNode = head;
     let result = '';
@@ -77,14 +91,19 @@ const linkedList = () => {
     return result;
   };
 
-  return { append, prepend, size, getHead, tail, toString };
+  return { append, prepend, size, getHead, tail, at, toString };
 };
 
 let myList = linkedList();
 myList.append(2);
 myList.prepend(1);
 
+for (let i = 3; i < 10; i += 1) {
+  myList.append(i);
+}
+
 console.log(myList.toString());
 console.log('Size:', myList.size());
 console.log('Head:', myList.getHead());
 console.log('Tail:', myList.tail());
+console.log('Index 5:', myList.at(5));
