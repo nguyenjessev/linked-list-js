@@ -39,6 +39,18 @@ const linkedList = () => {
     head = newNode;
   };
 
+  const size = () => {
+    let result = 0;
+    let currentNode = head;
+
+    while (currentNode) {
+      result += 1;
+      currentNode = currentNode.getNextNode();
+    }
+
+    return result;
+  };
+
   const toString = () => {
     let currentNode = head;
     let result = '';
@@ -53,7 +65,7 @@ const linkedList = () => {
     return result;
   };
 
-  return { append, prepend, toString };
+  return { append, prepend, size, toString };
 };
 
 let myList = linkedList();
@@ -61,3 +73,4 @@ myList.append(2);
 myList.prepend(1);
 
 console.log(myList.toString());
+console.log('Size:', myList.size());
