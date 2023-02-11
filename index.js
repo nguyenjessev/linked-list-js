@@ -98,6 +98,22 @@ const linkedList = () => {
     return false;
   };
 
+  const find = (value) => {
+    let currentNode = head;
+    let index = 0;
+
+    while (currentNode) {
+      if (currentNode.getValue() === value) {
+        break;
+      } else {
+        currentNode = currentNode.getNextNode();
+        index += 1;
+      }
+    }
+
+    return index < size() ? index : null;
+  };
+
   const toString = () => {
     let currentNode = head;
     let result = '';
@@ -112,7 +128,18 @@ const linkedList = () => {
     return result;
   };
 
-  return { append, prepend, size, getHead, tail, at, pop, contains, toString };
+  return {
+    append,
+    prepend,
+    size,
+    getHead,
+    tail,
+    at,
+    pop,
+    contains,
+    find,
+    toString,
+  };
 };
 
 let myList = linkedList();
@@ -133,3 +160,5 @@ myList.pop();
 console.log(myList.toString());
 console.log('Contains 4?', myList.contains(4));
 console.log('Contains 99?', myList.contains(99));
+console.log('Index of 5:', myList.find(5));
+console.log('Index of 99:', myList.find(99));
